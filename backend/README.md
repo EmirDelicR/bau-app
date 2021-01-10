@@ -5,14 +5,15 @@
 [] add swagger
 [] add sentry
 [] add unit test
-[] add file upload
-[] add file for logs
-[] add user permissions
+[] add file for logs (write logs to file)
+[] add user permissions (docker)
 [] fix docker
-[] add data base
+[] add database
 [] add error handling
+[] add helmet
 [] add postman request
 [] create logger using console.log
+[] add file upload
 
 [] add routes
 

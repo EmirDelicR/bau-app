@@ -12,6 +12,9 @@
 [] add error handling
 [] add helmet
 [] add postman request
+[] add Redis
+[] add Rabbit MQ
+[] add GIT pipeline (CD/CI)
 [] create logger using console.log
 [] add file upload
 
@@ -113,3 +116,142 @@ module.exports = {
   trailingComma: 'es5',
 };
 ```
+
+## swagger
+
+```console
+npm i swagger-jsdoc swagger-ui-express
+
+```
+
+#### Add swagger to code
+
+```js
+import swaggerUi from 'swagger-ui-express';
+import { swaggerDocument } from '../swagger/swagger';
+
+const registerRoutes = (app: Application) => {
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+};
+```
+
+#### Document routes
+
+You can create a **_.json_** or use **_.ts_** and separate routes documentation as is made in this setup.
+
+Add swagger main document.
+
+```js
+export const swaggerDocument = {
+  swagger: '2.0',
+  info: {
+    description: 'API Documentation for NodeJS API project',
+    version: '1.0.0',
+    title: 'NODE API',
+    contact: {
+      email: 'test@test.com',
+    },
+    license: {
+      name: 'Apache 2.0',
+      url: 'http://www.apache.org/licenses/LICENSE-2.0.html',
+    },
+  },
+  servers: [
+    {
+      // you can fetch from process.env and set one url
+      url: 'http://localhost:3100/api/v1',
+      description: 'Local server',
+    },
+    {
+      url: 'https://app-dev.herokuapp.com/api/v1',
+      description: 'DEV Env',
+    },
+  ],
+};
+```
+
+Add document for specific route
+
+```js
+const loginRequest = {
+  in: 'body',
+  name: 'body',
+  description: 'User login parameters',
+  required: true,
+  schema: {
+    type: 'object',
+    properties: {
+      email: {
+        type: 'string',
+      },
+      password: {
+        type: 'string',
+      },
+    },
+  },
+};
+
+const loginResponse = {
+  type: 'object',
+  properties: {
+    message: {
+      type: 'string',
+      description: 'Response message',
+    },
+    status: {
+      type: 'integer',
+      description: 'Response status code',
+    },
+  },
+};
+
+export const login = {
+  tags: ['Login'],
+  operationId: 'login',
+  description: 'Login user',
+  produces: ['application/json'],
+  parameters: [loginRequest],
+  responses: {
+    200: {
+      description: 'Success!',
+      schema: loginResponse,
+    },
+    400: {
+      description: 'Invalid status value!',
+      schema: loginResponse,
+    },
+    404: {
+      description: 'User not found!',
+      schema: loginResponse,
+    },
+  },
+};
+```
+
+Add document of specific route to main document
+
+```js
+import { login } from './routes/auth';
+
+export const swaggerDocument = {
+  swagger: '2.0',
+  info: {
+    // ...
+  },
+  servers: [
+    // ...
+  ],
+  tags: [
+    {
+      name: 'Login',
+    },
+  ],
+  paths: {
+    '/login': {
+      post: login,
+    },
+  },
+};
+```
+
+Start server and go to **_/api-dock_**

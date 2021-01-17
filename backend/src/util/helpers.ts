@@ -24,3 +24,7 @@
 // exports.validateHash = validateHash;
 // exports.createJWT = createJWT;
 // exports.verifyJWT = verifyJWT;
+
+export const testFunction = (name: string) => {
+  return `My name is ${name}`;
+};

@@ -7,6 +7,7 @@
 [] add sentry
 [] add unit test
 [] add file for logs (write logs to file)
+[] create logger using console.log
 [] add user permissions (docker)
 [] fix docker
 [] add database
@@ -16,7 +17,6 @@
 [] add Redis
 [] add Rabbit MQ
 [] add GIT pipeline (CD/CI)
-[] create logger using console.log
 [] add file upload
 
 [] add routes
@@ -284,7 +284,7 @@ export const swaggerDocument = {
 
 Start server and go to **_/api-dock_**
 
-## sentry
+## Sentry
 
 [Sentry](https://docs.sentry.io/platforms/node/guides/express/)
 
@@ -293,3 +293,55 @@ Start server and go to **_/api-dock_**
 https://codeburst.io/sentry-error-reporting-by-example-part-1-999b2df11556
 
 https://docs.bitnami.com/tutorials/build-deploy-monitor-express-application-kubernetes-bitnami-sentry/
+
+## Unit tests
+
+```console
+npm install jest --save-dev
+```
+
+```console
+npm i @types/jest ts-jest --save-dev
+```
+
+Initialize jest config file
+
+```console
+npx ts-jest config:init
+```
+
+This will create **_jest.config.js_** file
+
+```js
+module.exports = {
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  moduleNameMapper: {
+    'src/(.*)': '<rootDir>/src/$1',
+  },
+};
+```
+
+To resolve path from tsconfig.json add
+
+```js
+moduleNameMapper: {
+  'src/(.*)': '<rootDir>/src/$1',
+},
+```
+
+Add to package.json
+
+```js
+ "scripts": {
+    "test": "jest",
+  },
+```
+
+Create file **_someTest.spec.ts_** file
+
+Run:
+
+```console
+npm test
+```

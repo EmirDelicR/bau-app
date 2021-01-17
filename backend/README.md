@@ -1,8 +1,9 @@
 # TODO
 
-[x] add typescript
+[X] add typescript
+[X] add config import path
 [X] add linting and formatting
-[] add swagger
+[X] add swagger
 [] add sentry
 [] add unit test
 [] add file for logs (write logs to file)
@@ -58,6 +59,33 @@ Add **start** script
 
 ```js
 "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/app.ts",
+```
+
+## Path config
+
+```console
+npm install --save-dev tsconfig-paths
+```
+
+In tsconfig.json
+
+```js
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "src/*": ["src/*"]
+    }
+  }
+}
+```
+
+Add script in package.json
+
+```js
+"scripts": {
+  "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' -r tsconfig-paths/register src/app.ts",
+},
 ```
 
 ## ES linting
@@ -255,3 +283,13 @@ export const swaggerDocument = {
 ```
 
 Start server and go to **_/api-dock_**
+
+## sentry
+
+[Sentry](https://docs.sentry.io/platforms/node/guides/express/)
+
+// https://stackoverflow.com/questions/62048610/using-sentry-with-a-custom-error-handler-in-express
+
+https://codeburst.io/sentry-error-reporting-by-example-part-1-999b2df11556
+
+https://docs.bitnami.com/tutorials/build-deploy-monitor-express-application-kubernetes-bitnami-sentry/

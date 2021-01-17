@@ -1,8 +1,8 @@
 import swaggerUi from 'swagger-ui-express';
 import { Application } from 'express';
 
-import authRoutes from './auth/auth';
-import { swaggerDocument } from '../swagger/swagger';
+import authRoutes from 'src/routes/auth/auth';
+import { swaggerDocument } from 'src/swagger/swagger';
 
 const registerRoutes = (app: Application) => {
   app.use(authRoutes);

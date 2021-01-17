@@ -2,7 +2,7 @@ import {
   ILoginRequest,
   ILoginResponse,
   ISwaggerRoutes,
-} from '../../interfaces/swagger';
+} from 'src/interfaces/swagger';
 
 const loginRequest: ILoginRequest = {
   in: 'body',

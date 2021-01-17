@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 
-exports.login = async (req: Request, res: Response, next: NextFunction) => {
+const login = async (req: Request, res: Response, next: NextFunction) => {
   const userData = {
     email: req.body.email,
     password: req.body.password,
@@ -11,4 +11,8 @@ exports.login = async (req: Request, res: Response, next: NextFunction) => {
   } catch (err) {
     next(err);
   }
+};
+
+export const authController = {
+  login,
 };

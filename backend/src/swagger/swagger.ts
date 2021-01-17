@@ -1,5 +1,5 @@
-import { ISwaggerMainDocument } from '../interfaces/swagger';
-import { login } from './routes/auth';
+import { ISwaggerMainDocument } from 'src/interfaces/swagger';
+import { login } from 'src/swagger/routes/auth';
 
 export const swaggerDocument: ISwaggerMainDocument = {
   swagger: '2.0',

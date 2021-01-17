@@ -1,8 +1,6 @@
-import {
-  ErrorRequestHandler, Request, Response, NextFunction,
-} from 'express';
+import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
 
-export const cors = (req: Request, res: Response, next: NextFunction) => {
+const cors = (req: Request, res: Response, next: NextFunction) => {
   // Set this to your client side - like localhost:3000/
   // * means allow to all
   res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -12,8 +10,13 @@ export const cors = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
-export const error: ErrorRequestHandler = (err, req, res) => {
+const error: ErrorRequestHandler = (err, req, res) => {
   // TODO write to log file or use sentry;
   const { statusCode = 500, data = null, message } = err;
   res.status(statusCode).json({ message, data });
+};
+
+export const middleware = {
+  cors,
+  error,
 };

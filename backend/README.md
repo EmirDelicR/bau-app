@@ -6,12 +6,12 @@
 [X] add swagger
 [] add sentry
 [X] add unit test
-[] add file for logs (write logs to file)
-[] create logger using console.log
+[X] add file for logs (write logs to file)
+[X] create logger using console.log
 [] add user permissions (docker)
 [] fix docker
 [] add database
-[] add error handling
+[X] add error handling
 [X] add helmet
 [] add postman request
 [] add Redis
@@ -345,3 +345,7 @@ Run:
 ```console
 npm test
 ```
+
+## GIT pipeline
+
+(Actions)[https://docs.github.com/en/actions/quickstart]

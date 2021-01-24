@@ -1,4 +1,5 @@
 import { ErrorRequestHandler, Request, Response, NextFunction } from 'express';
+import { writeErrorToFile } from 'src/util/logger/file';
 
 const cors = (req: Request, res: Response, next: NextFunction) => {
   // Set this to your client side - like localhost:3000/
@@ -11,9 +12,10 @@ const cors = (req: Request, res: Response, next: NextFunction) => {
 };
 
 const error: ErrorRequestHandler = (err, req, res) => {
-  // TODO write to log file or use sentry;
+  // use sentry to log errors;
   const { statusCode = 500, data = null, message } = err;
-  res.status(statusCode).json({ message, data });
+  writeErrorToFile(message);
+  res.status(statusCode).json({ message, data, statusCode });
 };
 
 export const middleware = {

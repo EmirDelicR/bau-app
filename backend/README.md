@@ -5,20 +5,20 @@
 [X] add linting and formatting
 [X] add swagger
 [] add sentry
-[] add unit test
+[X] add unit test
 [] add file for logs (write logs to file)
 [] create logger using console.log
 [] add user permissions (docker)
 [] fix docker
 [] add database
 [] add error handling
-[] add helmet
+[X] add helmet
 [] add postman request
 [] add Redis
 [] add Rabbit MQ
 [] add GIT pipeline (CD/CI)
-[] add file upload
 
+[] add file upload
 [] add routes
 
     /login POST

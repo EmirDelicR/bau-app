@@ -31,13 +31,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      working-directory: ./backend
-      # Checks out a copy of your repository on the ubuntu-latest machine
       - name: Checkout code
         uses: actions/checkout@v2
-
+        working-directory: ./backend
       # Runs the Super-Linter action
       - name: Run Super-Linter
         uses: github/super-linter@v3
-
-
+        working-directory: ./backend

@@ -21,8 +21,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Run tests
         working-directory: ./backend
-      - run: npm test
+        run: npm test
 
   super-lint:
     # Name the Job

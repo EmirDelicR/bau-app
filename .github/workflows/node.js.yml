@@ -21,9 +21,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Run tests
+      - name: Install JEST
         working-directory: ./backend
         run: npm i jest --save-dev
+      - name: Run tests
+        working-directory: ./backend
         run: npm test
 
   super-lint:

@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x, 15.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - uses: actions/checkout@v2
@@ -21,24 +20,23 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install JEST
+      - name: Install Jest
         working-directory: ./backend
         run: npm i jest --save-dev
-      - name: Run tests
+      - name: Run backend tests
         working-directory: ./backend
         run: npm test
-
-  super-lint:
-    # Name the Job
+  linting:
     name: Lint code base
-    # Set the type of machine to run on
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      # Runs the Super-Linter action
-      - name: Run Super-Linter
+        with:
+          # Full git history is needed to get a proper list of changed files within `super-linter`
+          fetch-depth: 0
+      - name: Lint Code Base
         uses: github/super-linter@v3
         env:
           VALIDATE_ALL_CODEBASE: false
